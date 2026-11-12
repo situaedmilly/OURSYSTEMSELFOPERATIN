@@ -1,0 +1,566 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/situaedmilly/OURSYSTEMSELFOPERATIN/blob/architecture/chamboxreality-thirdeye-boot-v0.1/OURSELF/SELFGRAPH/session-selfgraph.schema.v0.1.json",
+  "title": "OURSELF Session SELFGRAPH v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "reality_id",
+    "instance_id",
+    "session_id",
+    "graph_id",
+    "graph_revision",
+    "topology_id",
+    "topology_revision",
+    "topology_digest",
+    "created_at",
+    "session_status",
+    "evidence_refs",
+    "capability_refs",
+    "authority_ref",
+    "admission_ref",
+    "transition_plan",
+    "cognition_events",
+    "execution_receipts",
+    "observed_effect_refs",
+    "witness_ref",
+    "recontact_ref",
+    "isolation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "reality_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instance_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "graph_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "graph_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topology_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topology_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topology_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_status": {
+      "enum": [
+        "CREATED",
+        "COMPILED",
+        "ADMISSION_PENDING",
+        "ADMITTED",
+        "EXECUTING",
+        "RECONCILING",
+        "TERMINATED",
+        "BLOCKED"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "kind",
+          "uri",
+          "classification"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "classification": {
+            "enum": [
+              "DECLARED",
+              "OBSERVED",
+              "VERIFIED",
+              "INFERRED",
+              "UNKNOWN",
+              "NOT_COLLECTED",
+              "UNSUPPORTED",
+              "ERROR"
+            ]
+          }
+        }
+      }
+    },
+    "capability_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_id",
+          "source_ref",
+          "declaration_status",
+          "admission_status"
+        ],
+        "properties": {
+          "capability_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "declaration_status": {
+            "enum": [
+              "DECLARED",
+              "OBSERVED",
+              "VERIFIED",
+              "UNKNOWN",
+              "UNSUPPORTED"
+            ]
+          },
+          "admission_status": {
+            "enum": [
+              "NOT_REQUESTED",
+              "DENIED",
+              "ADMITTED"
+            ]
+          }
+        }
+      }
+    },
+    "authority_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "grant_ref",
+        "scope",
+        "valid_from",
+        "valid_until"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NONE",
+            "REFERENCE_ONLY",
+            "DELEGATED"
+          ]
+        },
+        "grant_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valid_until": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "admission_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "decision_id",
+        "graph_digest",
+        "authority_ref_digest",
+        "decided_at",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_REQUESTED",
+            "DENIED",
+            "ADMITTED"
+          ]
+        },
+        "decision_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "graph_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "authority_ref_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "decided_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "transition_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "transition_id",
+          "action",
+          "target",
+          "capability_refs",
+          "required_authority_scope",
+          "status",
+          "preconditions",
+          "expected_effect_predicates"
+        ],
+        "properties": {
+          "transition_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capability_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_authority_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "PLANNED",
+              "BLOCKED",
+              "ADMITTED",
+              "EXECUTING",
+              "OBSERVED",
+              "RECEIPTED",
+              "CANCELLED"
+            ]
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_effect_predicates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "cognition_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_id",
+          "provider",
+          "model",
+          "model_digest",
+          "endpoint",
+          "request_digest",
+          "response_digest",
+          "completed_at",
+          "status",
+          "claim_ceiling"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_digest": {
+            "type": "string",
+            "minLength": 1
+          },
+          "endpoint": {
+            "type": "string",
+            "minLength": 1
+          },
+          "request_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "response_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "enum": [
+              "COMPLETED",
+              "TRUNCATED",
+              "ERROR"
+            ]
+          },
+          "claim_ceiling": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cognition_output",
+              "execution_authority",
+              "independent_attestation"
+            ],
+            "properties": {
+              "cognition_output": {
+                "enum": [
+                  "OBSERVED",
+                  "NOT_OBSERVED",
+                  "ERROR"
+                ]
+              },
+              "execution_authority": {
+                "const": "NOT_ESTABLISHED"
+              },
+              "independent_attestation": {
+                "const": "NOT_ESTABLISHED"
+              }
+            }
+          }
+        }
+      }
+    },
+    "execution_receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "receipt_id",
+          "transition_id",
+          "receipt_digest",
+          "created_at",
+          "evidence_refs"
+        ],
+        "properties": {
+          "receipt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "transition_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receipt_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "observed_effect_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "witness_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "witness_id",
+        "independence_basis",
+        "evaluation_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_ASSIGNED",
+            "INDEPENDENT_REQUIRED",
+            "ASSIGNED",
+            "EVALUATED"
+          ]
+        },
+        "witness_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "independence_basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evaluation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "recontact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "snapshot_ref",
+        "verified_at",
+        "source_digests"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_ESTABLISHED",
+            "AVAILABLE",
+            "REQUIRED"
+          ]
+        },
+        "snapshot_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "source_digests": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_session_ref",
+        "inherits_authority",
+        "inherits_execution_state",
+        "topology_reference_only"
+      ],
+      "properties": {
+        "parent_session_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inherits_authority": {
+          "const": false
+        },
+        "inherits_execution_state": {
+          "const": false
+        },
+        "topology_reference_only": {
+          "const": true
+        }
+      }
+    }
+  }
+}

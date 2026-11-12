@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "reality_id": "CHAMBOXREALITY-THIRDEYE-OURSELFMAC-001",
+  "instance_id": "OURSELFMAC-THIRDEYE-001",
+  "session_id": "SESSION-CHAMBOX-BOOT-20261112-001",
+  "graph_id": "SELFGRAPH-CHAMBOX-THIRDEYE-001",
+  "graph_revision": "0.1.0",
+  "topology_id": "OURSELF-ECOSYSTEM-TOPOLOGY",
+  "topology_revision": "2026-11-12T18:50:35.730Z",
+  "topology_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "created_at": "2026-11-12T18:55:20Z",
+  "session_status": "BLOCKED",
+  "evidence_refs": [],
+  "capability_refs": [
+    {
+      "capability_id": "LOCAL_MODEL_INFERENCE",
+      "source_ref": "OURSELFMAC:OLLAMA:11436",
+      "declaration_status": "OBSERVED",
+      "admission_status": "NOT_REQUESTED"
+    },
+    {
+      "capability_id": "LOCAL_READ_ONLY_OBSERVATION",
+      "source_ref": "CHAMBOXREALITY:THIRDEYE:READ_ONLY_COMPILER",
+      "declaration_status": "OBSERVED",
+      "admission_status": "NOT_REQUESTED"
+    }
+  ],
+  "authority_ref": {
+    "status": "NONE",
+    "grant_ref": null,
+    "scope": [],
+    "valid_from": null,
+    "valid_until": null
+  },
+  "admission_ref": {
+    "status": "NOT_REQUESTED",
+    "decision_id": null,
+    "graph_digest": null,
+    "authority_ref_digest": null,
+    "decided_at": null,
+    "reason": "No state-changing transition requested or admitted in this observation-only boot."
+  },
+  "transition_plan": [],
+  "cognition_events": [
+    {
+      "event_id": "THIRDEYE-INFERENCE-20261112-001",
+      "provider": "Ollama-compatible local runtime",
+      "model": "alchemy-thirdeye:cognitive-only-v0.3.1",
+      "model_digest": "e610f73e8e0aa3e59f90fd9f854ccd44cb37ba2ad47597005003c22b9337d23b",
+      "endpoint": "http://127.0.0.1:11436/api/generate",
+      "request_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "response_digest": "sha256:57ca9b1d2c826b48e6a71548a0e72d7f8c30e938dad569dcf6cbd352c9602502",
+      "completed_at": "2026-11-12T18:55:20.098016Z",
+      "status": "COMPLETED",
+      "claim_ceiling": {
+        "cognition_output": "OBSERVED",
+        "execution_authority": "NOT_ESTABLISHED",
+        "independent_attestation": "NOT_ESTABLISHED"
+      }
+    }
+  ],
+  "execution_receipts": [],
+  "observed_effect_refs": [],
+  "witness_ref": {
+    "status": "INDEPENDENT_REQUIRED",
+    "witness_id": null,
+    "independence_basis": null,
+    "evaluation_ref": null
+  },
+  "recontact_ref": {
+    "status": "REQUIRED",
+    "snapshot_ref": null,
+    "verified_at": null,
+    "source_digests": []
+  },
+  "isolation": {
+    "parent_session_ref": null,
+    "inherits_authority": false,
+    "inherits_execution_state": false,
+    "topology_reference_only": true
+  }
+}

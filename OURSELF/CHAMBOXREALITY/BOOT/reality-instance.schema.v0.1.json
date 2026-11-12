@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/situaedmilly/OURSYSTEMSELFOPERATIN/blob/architecture/chamboxreality-thirdeye-boot-v0.1/OURSELF/CHAMBOXREALITY/BOOT/reality-instance.schema.v0.1.json",
+  "title": "CHAMBOXREALITY Instance v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "reality_id",
+    "instance_id",
+    "name",
+    "created_at",
+    "substrate",
+    "jurisdiction",
+    "boundaries",
+    "authority",
+    "standing",
+    "evidence_refs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "reality_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instance_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "substrate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "host_identity",
+        "runtime_refs"
+      ],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "minLength": 1
+        },
+        "host_identity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runtime_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "jurisdiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "constitutional_root_ref",
+        "constitutional_status",
+        "owner_binding_status",
+        "trust_custodian_status"
+      ],
+      "properties": {
+        "constitutional_root_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "constitutional_status": {
+          "enum": [
+            "CANDIDATE",
+            "RATIFIED",
+            "SUPERSEDED",
+            "UNKNOWN"
+          ]
+        },
+        "owner_binding_status": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "UNKNOWN"
+          ]
+        },
+        "trust_custodian_status": {
+          "enum": [
+            "IDENTIFIED",
+            "UNRESOLVED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filesystem",
+        "network",
+        "execution",
+        "cross_reality"
+      ],
+      "properties": {
+        "filesystem": {
+          "enum": [
+            "READ_ONLY",
+            "SCOPED_WRITE",
+            "UNAVAILABLE"
+          ]
+        },
+        "network": {
+          "enum": [
+            "LOOPBACK_ONLY",
+            "ALLOWLISTED",
+            "UNAVAILABLE"
+          ]
+        },
+        "execution": {
+          "enum": [
+            "DISABLED",
+            "BOUNDED_ADMITTED",
+            "UNAVAILABLE"
+          ]
+        },
+        "cross_reality": {
+          "enum": [
+            "CLOSED",
+            "EXPLICIT_CROSSING_ONLY",
+            "UNAVAILABLE"
+          ]
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "instance",
+        "execution",
+        "admission",
+        "default_decision"
+      ],
+      "properties": {
+        "model": {
+          "const": "NONE"
+        },
+        "instance": {
+          "const": "NONE"
+        },
+        "execution": {
+          "const": "NONE"
+        },
+        "admission": {
+          "const": "NONE"
+        },
+        "default_decision": {
+          "const": "DENY"
+        }
+      }
+    },
+    "standing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reality_status",
+        "launch_status",
+        "reason"
+      ],
+      "properties": {
+        "reality_status": {
+          "enum": [
+            "OBSERVATION_ONLY",
+            "ADMITTED",
+            "ACTIVE",
+            "BLOCKED"
+          ]
+        },
+        "launch_status": {
+          "enum": [
+            "BLOCKED",
+            "READY_FOR_BOUNDED_EXECUTION",
+            "LAUNCHED"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
