@@ -44,3 +44,17 @@ The canonical disk image and other large payloads are stored in an admitted cont
 The repository identity and this doctrine are recorded. The repository's prior main branch contained only a minimal README; this file adds design doctrine, not an implemented OSOS runtime. The original Windows VM payload, canonical storage runtime, independent custodian, and independent witness remain unadmitted.
 
 **Constitutional rule:** OSOS governs. The ecosystem coordinates. The runtime performs. Independent observation proves the resulting state.
+
+## Evidence-state symmetry
+
+OSOS requires strict separation across the continuity stack:
+
+- DATASELF envelope lifecycle `INTEGRITY_VERIFIED` means exact payload bytes match the declared SHA-256 and byte count.
+- DATASELF transition event `ADMITTED` means an independently governed authority accepted the exact operation and preimage.
+- Neither state implies the other. A component marked `ADMITTED` is not thereby byte-integrity verified.
+- A profile's envelope ID, digest, content key, byte count, or transition-event references remain declarations until resolved against canonical envelope and journal objects.
+- A pure structural validator cannot establish payload integrity, journal continuity, authority, custody, runtime compatibility, or witness independence.
+
+Accordingly, structural validation MUST NOT produce `RESTORE_READY` or `RECOVERED`. Those states require a separate evidence resolver, exact-byte verification, full anchored transition-journal verification, operation-specific admission, source-immutability evidence, independent custody, observed restoration, recontact, and independent witnessing.
+
+No subsystem may promote its own receipt or declaration into a higher constitutional state. OSOS governs the invariant; DATASELF records canonical evidence; OURPROCESSORSELF evaluates supplied evidence; the execution environment performs only separately admitted effects.
