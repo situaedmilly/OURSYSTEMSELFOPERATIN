@@ -30,3 +30,7 @@ A fresh CHAMBOXREALITY may boot in observation-only mode. Execution remains disa
 - CONFORMANCE/ — executable invariants and launch gates.
 
 The branch is an architecture proposal, not proof that a runtime has launched.
+
+## Runtime storage symmetry
+
+The proposed OSOS storage contract is `OURSELF/STORAGE/RUNTIME-SYMMETRY-CONSTITUTIONAL-CONTRACT-v0.1.md`. It establishes semantic storage symmetry across platform-specific runtimes while preserving distinct identity, authority, jurisdiction, custody, durability, and witness boundaries. It is a proposal only; it does not ratify itself or provision storage.
